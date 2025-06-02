@@ -1,0 +1,252 @@
+/* Global Transitions for All Elements */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Smooth Scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Glowing Text Effect */
+.glowing-text {
+    animation: glowing 1.5s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% { text-shadow: 0 0 5px #ff4d4f, 0 0 10px #ff4d4f, 0 0 15px #ff4d4f, 0 0 20px #ff4d4f, 0 0 30px #ff4d4f; }
+    50% { text-shadow: 0 0 5px #ff4d4f, 0 0 10px #ff4d4f, 0 0 15px #ff4d4f, 0 0 20px #ff4d4f, 0 0 40px #ff4d4f; }
+    100% { text-shadow: 0 0 5px #ff4d4f, 0 0 10px #ff4d4f, 0 0 15px #ff4d4f, 0 0 20px #ff4d4f, 0 0 50px #ff4d4f; }
+}
+
+/* Fade In Effect for Cards */
+.card {
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Animated Underline for Links */
+.nav-link {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Button Hover Effect with Color Shift */
+.btn-register:hover {
+    background: linear-gradient(to right, #0056b3, #007bff);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Shadow Effect on Hover for All Candidate Cards */
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+}
+
+/* Profile Picture Zoom Animation */
+.profile-pic {
+    transition: transform 0.3s ease, filter o.3s ease;
+}
+
+.card:hover .profile-pic {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Zoom-in Animation for Banner */
+.banner {
+    animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Card Flip Animation for Candidate Cards */
+.card {
+    perspective: 1000px;
+}
+
+
+/* Floating Effect on Footer */
+.footer {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animated Gradient Background for Footer */
+.footer {
+    background: linear-gradient(45deg, #007bff, #00a0ff, #007bff);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hover Glow Effect for Footer Links */
+.footer-links a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff4d4f, 0 0 20px #ff4d4f;
+    transform: translateY(-3px);
+}
+
+/* Pulse Animation for Header Logo */
+.logo i {
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animated Border for Candidate Cards on Hover */
+.card:hover {
+    border: 2px solid #007bff;
+}
+
+/* Hover Glow on Links in Forms */
+.form-container input:focus, .form-container select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Slide-in Animation for Registration Form */
+.form-container {
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Adding Hover Effect for Candidate List */
+#candidate-list .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Fade In on Poll Section */
+#poll-results {
+    animation: fadeInPoll 1s ease-in-out;
+}
+
+@keyframes fadeInPoll {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Create a flickering effect for dynamic content */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.flicker {
+    animation: flicker 1s infinite;
+}
+
+/* Cool Loading Spinner */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add smooth scroll bar for the page */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}

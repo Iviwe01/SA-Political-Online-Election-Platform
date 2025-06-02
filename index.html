@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Vote SA</title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="styles2.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<div class="container">
+       <header class="header">
+        <div class="logo">
+            <i class="fas fa-vote-yea"></i> LET'S VOTE SA
+        </div>
+        <nav class="nav">
+            <a href="#poll-results" class="nav-link"><i class="fas fa-poll"></i> Results</a>
+            <a href="javascript:void(0);" class="nav-link" onclick="showLogin()"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="javascript:void(0);" class="btn-register" onclick="showRegister()"><i class="fas fa-user-plus"></i> Register</a>
+        </nav>
+    </header>
+		
+		<!-- Poll Results Section -->
+        <section id="poll-results" class="poll-container">
+			<div class="poll-left">
+				<h2>Poll Results</h2>
+					<div id="poll-summary">
+						<div id="total-votes">Total Votes: 0</div>
+						<canvas id="voterChart"></canvas> <!-- Original Chart -->
+					</div>
+				<div id="candidate-list"></div>
+			</div>
+				<div class="poll-right">
+					<h2>Voter Participation</h2>
+					<canvas id="voterStatusChart"></canvas> <!-- New Doughnut Chart -->
+				<!--</div>-->
+				
+						<div id="candidate-ranking">
+					<h2>Candidate Rankings</h2>
+					<table id="ranking-table">
+						<thead>
+							<tr>
+								<th>Rank</th>
+								<th>Candidate</th>
+								<th>Party</th>
+								<th>Votes</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Data will be populated dynamically -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+
+		
+		<div class="container">
+        <h2>Provincial Voting Data</h2>
+        <canvas id="provinceVotesChart"></canvas> <!-- Chart.js Canvas -->
+		</div>
+
+		
+		 <section class="banner" data-aos="fade-up">
+        <h1>Meet the Candidates</h1>
+        <p>Vote for the candidate who represents your values and vision for the future.</p>
+       </section>
+	   
+		<!-- Candidate Cards Section -->
+			<section class="candidates" data-aos="zoom-in">
+				<!-- First Row of Candidates -->
+				<div class="card">
+					<img src="/images/ramaphosa.jpg" alt="Cyril Ramaphosa" class="profile-pic">
+					<h3>Cyril Ramaphosa</h3>
+					<p class="position">Running to Be: <span class="position-title">President</span></p>
+					<p class="description">Experienced leader dedicated to transparency and growth in the community.</p>
+					<button class="btn-manifesto" onclick="showManifesto('Cyril Ramaphosa')">View Manifesto</button>
+					<button class="btn-vote">Vote X</button>
+				</div>
+				
+				<div class="card">
+					<img src="/images/mashatile.jpeg" alt="Paul Mashatile" class="profile-pic">
+					<h3>Paul Mashatile</h3>
+					<p class="position">Running to Be: <span class="position-title">President</span></p>
+					<p class="description">Committed to innovation and social impact, striving for a better tomorrow.</p>
+					<button class="btn-manifesto" onclick="showManifesto('Paul Mashatile')">View Manifesto</button>
+					<button class="btn-vote">Vote X</button>
+				</div>
+				
+				<div class="card">
+					<img src="/images/malema.jpeg" alt="Julius Malema" class="profile-pic">
+					<h3>Julius Malema</h3>
+					<p class="position">Running to Be: <span class="position-title">President</span></p>
+					<p class="description">Focused on sustainable development and equal opportunities for all.</p>
+					<button class="btn-manifesto" onclick="showManifesto('Julius Malema')">View Manifesto</button>
+					<button class="btn-vote">Vote X</button>
+				</div>
+
+				<div class="card">
+					<img src="/images/steenhuisen.jpeg" alt="John Steenhuisen" class="profile-pic">
+					<h3>John Steenhuisen</h3>
+					<p class="position">Running to Be: <span class="position-title">President</span></p>
+					<p class="description">Building bridges and fostering inclusive growth for all members.</p>
+					<button class="btn-manifesto" onclick="showManifesto('John Steenhuisen')">View Manifesto</button>
+					<button class="btn-vote">Vote X</button>
+				</div>
+
+				<div class="card">
+					<img src="/images/zuma.jpeg" alt="Jacob Zuma" class="profile-pic">
+					<h3>Jacob Zuma</h3>
+					<p class="position">Running to Be: <span class="position-title">President</span></p>
+					<p class="description">Promoting transparency and accountability in all decision-making processes.</p>
+					<button class="btn-manifesto" onclick="showManifesto('Jacob Zuma')">View Manifesto</button>
+					<button class="btn-vote">Vote X</button>
+				</div>
+				</section>
+		        <!-- Manifesto Modal -->
+        <div id="manifesto-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+		
+			<div id="register-form" class="form-container" data-aos="zoom-in">
+    <h2><i class="fas fa-user-plus"></i> Register</h2>
+    <form id="register">
+        <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="register-name" placeholder="Your Name" required>
+        </div>
+        <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="register-email" placeholder="Email" required>
+        </div>
+        <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="register-password" placeholder="Password" required>
+        </div>
+        <div class="input-icon">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="register-idnumber" maxlength="13" placeholder="SA ID Number" required>
+        </div>
+        <div>
+		<label for="register-province">Select Province:</label>
+            <select id="register-province" required>
+                <option value="" disabled selected>Select your province</option>
+                <option value="Gauteng">Gauteng</option>
+                <option value="Western Cape">Western Cape</option>
+                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                <option value="Eastern Cape">Eastern Cape</option>
+                <option value="Free State">Free State</option>
+                <option value="Limpopo">Limpopo</option>
+                <option value="Mpumalanga">Mpumalanga</option>
+                <option value="Northern Cape">Northern Cape</option>
+                <option value="North West">North West</option>
+            </select>
+        </div>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Register</button>
+    </form>
+    <p>Already registered? <a href="javascript:void(0);" onclick="showLogin()">Login</a></p>
+</div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="form-container" style="display:none;">
+            <h2>Login</h2>
+            <form id="login">
+                <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="login-email" placeholder="Email" required>
+        </div>
+        <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="login-password" placeholder="Password" required>
+        </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Not registered? <a href="javascript:void(0);" onclick="showRegister()">Register</a></p>
+        </div>
+
+        <!-- Voting Section -->
+        <div id="voting-section" style="display: none;">
+			<h2 class="voting-header">Vote for Your Candidate</h2>
+			<div id="candidates-list" class="candidates-container"></div>
+		</div>
+
+
+    </div>
+	
+	<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Let's Vote SA. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+            <a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contact Us</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="manifesto.js"></script>
+</body>
+</html>
