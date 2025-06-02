@@ -11,4 +11,4 @@ def get_firestore_db():
     return firestore.client()
 	
 # MailCheck.ai API Key
-MAILCHECK_API_KEY = "4PG7uoGfm0Vdz4i2qZvNMAJ5zj0pNgKk"  # Replace with your actual MailCheck.ai API key
+MAILCHECK_API_KEY = "xxxxxxxxxxx"  # Replace with your actual MailCheck.ai API key
